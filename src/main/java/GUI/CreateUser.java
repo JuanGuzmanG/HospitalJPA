@@ -1,6 +1,10 @@
 package GUI;
 
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CreateUser extends JFrame {
     private JPanel JframeCreatePanel;
@@ -23,8 +27,20 @@ public class CreateUser extends JFrame {
     private JButton btn_ClearUser;
     private JButton btn_createButton;
 
+    private MainForm MF;
+    public void openMainForm(MainForm mf) {
+        this.MF = mf;
+    }
+
     public CreateUser() {
         setContentPane(JframeCreatePanel);
+        btn_createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MF.openCreateUser(CreateUser.this);
+                MF.setVisible(true);
+            }
+        });
     }
 
 }
