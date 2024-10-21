@@ -1,8 +1,12 @@
 package GUI;
 
+import LOGIC.Controller;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class CreateUser extends JFrame {
     private JPanel JframeCreatePanel;
@@ -30,13 +34,17 @@ public class CreateUser extends JFrame {
     private JList AllergiesList;
     private JList SpecialAttentionList;
 
+    Controller controller = new Controller();
+
     private MainForm MF;
     public void openMainForm(MainForm mf) {
         this.MF = mf;
     }
 
     public CreateUser() {
+
         setContentPane(JframeCreatePanel);
+
         btncreateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,6 +66,19 @@ public class CreateUser extends JFrame {
                 AllergiesList.setSelectedIndex(0);
                 SpecialAttentionList.setSelectedIndex(0);
                 taMHUser.setText("");
+            }
+        });
+        btncreateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = taNameUser.getText();
+                String lastname = talastnameUser.getText();
+                String email = taEmailUser.getText();
+                int phone = Integer.parseInt(taphoneUser.getText());
+                Date date = new Date((int) YearSpinner.getValue(),(int) MonthSpinner.getValue(),(int) DaySpinner.getValue());
+                String history = taMHUser.getText();
+
+                controller.saveUser(name,lastname,email,phone,date,history);
             }
         });
     }

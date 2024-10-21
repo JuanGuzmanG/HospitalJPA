@@ -33,6 +33,14 @@ public class Doctor {
                 '}';
     }
 
+    public LinkedList<User> getUser() {
+        return user;
+    }
+
+    public void setUser(LinkedList<User> user) {
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,7 +1,6 @@
 package LOGIC;
 
 import javax.persistence.*;
-import javax.print.Doc;
 import java.util.*;
 
 @Entity
@@ -13,14 +12,9 @@ public class User {
     private String lastname;
     private String email;
     private int phone;
-/*    private List<String> Allergies;
-    private String SpecialAttention;*/
     private String MedicalHistory;
 @Temporal(TemporalType.DATE)
     private Date brithdate;
-
-@ManyToMany
-    private LinkedList<Doctor> doctors;
 
     public User() {
     }
@@ -103,3 +97,7 @@ public class User {
         MedicalHistory = medicalHistory;
     }
 }
+
+
+/*    private List<String> Allergies;
+    private String SpecialAttention;*/
