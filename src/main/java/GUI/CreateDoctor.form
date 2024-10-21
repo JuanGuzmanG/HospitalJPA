@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="JFrameCreateDoctor" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="557" height="400"/>
+      <xy x="20" y="20" width="557" height="468"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -107,7 +107,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="b4341" class="javax.swing.JTextArea" binding="taNameUser">
+                      <component id="b4341" class="javax.swing.JTextArea" binding="taNameDoctor">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="20"/>
@@ -179,69 +179,10 @@
                   </grid>
                 </children>
               </grid>
-              <grid id="7ed52" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-13947600"/>
-                </properties>
-                <border type="none"/>
-                <children>
-                  <grid id="6b303" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="45" vgap="-1">
-                    <margin top="0" left="0" bottom="0" right="0"/>
-                    <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <minimum-size width="60" height="-1"/>
-                        <maximum-size width="100" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties>
-                      <autoscrolls value="false"/>
-                      <background color="-13947600"/>
-                      <doubleBuffered value="true"/>
-                      <foreground color="-1751987"/>
-                      <opaque value="true"/>
-                      <requestFocusEnabled value="true"/>
-                    </properties>
-                    <border type="empty" title=""/>
-                    <children>
-                      <component id="784f5" class="javax.swing.JLabel" binding="lb_Specialty">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <foreground color="-263174"/>
-                          <text value="Specialty"/>
-                        </properties>
-                      </component>
-                    </children>
-                  </grid>
-                  <grid id="f9822" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                    <margin top="0" left="0" bottom="0" right="0"/>
-                    <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties/>
-                    <border type="none"/>
-                    <children>
-                      <component id="4f9e9" class="javax.swing.JTextArea" binding="taSpecialty">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="20"/>
-                          </grid>
-                        </constraints>
-                        <properties/>
-                      </component>
-                    </children>
-                  </grid>
-                </children>
-              </grid>
               <grid id="7530c" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <background color="-13947600"/>
@@ -298,65 +239,6 @@
                   </grid>
                 </children>
               </grid>
-              <grid id="96c03" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-13947600"/>
-                </properties>
-                <border type="none"/>
-                <children>
-                  <grid id="e05e2" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="45" vgap="-1">
-                    <margin top="0" left="0" bottom="0" right="0"/>
-                    <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <minimum-size width="60" height="-1"/>
-                        <maximum-size width="100" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties>
-                      <autoscrolls value="false"/>
-                      <background color="-13947600"/>
-                      <doubleBuffered value="true"/>
-                      <foreground color="-1751987"/>
-                      <opaque value="true"/>
-                      <requestFocusEnabled value="true"/>
-                    </properties>
-                    <border type="empty" title=""/>
-                    <children>
-                      <component id="e1a55" class="javax.swing.JLabel">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <foreground color="-263174"/>
-                          <text value="pacients"/>
-                        </properties>
-                      </component>
-                    </children>
-                  </grid>
-                  <grid id="eedad" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                    <margin top="0" left="0" bottom="0" right="0"/>
-                    <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties/>
-                    <border type="none"/>
-                    <children>
-                      <component id="8d29" class="javax.swing.JTextArea" binding="tapacients">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="20"/>
-                          </grid>
-                        </constraints>
-                        <properties/>
-                      </component>
-                    </children>
-                  </grid>
-                </children>
-              </grid>
               <grid id="12129" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
@@ -383,6 +265,139 @@
                       <text value="Create"/>
                     </properties>
                   </component>
+                </children>
+              </grid>
+              <grid id="7ed52" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-13947600"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="6b303" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="45" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <minimum-size width="60" height="-1"/>
+                        <maximum-size width="100" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <autoscrolls value="false"/>
+                      <background color="-13947600"/>
+                      <doubleBuffered value="true"/>
+                      <foreground color="-1751987"/>
+                      <opaque value="true"/>
+                      <requestFocusEnabled value="true"/>
+                    </properties>
+                    <border type="empty" title=""/>
+                    <children>
+                      <component id="784f5" class="javax.swing.JLabel" binding="lb_Specialty">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <foreground color="-263174"/>
+                          <text value="Specialty"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="f9822" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="c15a1" class="javax.swing.JComboBox" binding="cbSpecialty">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <model>
+                            <item value="-"/>
+                            <item value="alegia 1"/>
+                            <item value="alegia 2"/>
+                            <item value="alegia 3"/>
+                            <item value="alegia 4"/>
+                            <item value="alegia 5"/>
+                            <item value="alegia 6"/>
+                            <item value="alegia 7"/>
+                            <item value="alegia 8"/>
+                          </model>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+              <grid id="deaed" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-13947600"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="25a03" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="45" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <minimum-size width="60" height="-1"/>
+                        <maximum-size width="100" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <autoscrolls value="false"/>
+                      <background color="-13947600"/>
+                      <doubleBuffered value="true"/>
+                      <foreground color="-1751987"/>
+                      <opaque value="true"/>
+                      <requestFocusEnabled value="true"/>
+                    </properties>
+                    <border type="empty" title=""/>
+                    <children>
+                      <component id="ac155" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <foreground color="-263174"/>
+                          <text value="Pacient"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="87f95" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <scrollpane id="f87a">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="4256c" class="javax.swing.JList" binding="list1" default-binding="true">
+                            <constraints/>
+                            <properties/>
+                          </component>
+                        </children>
+                      </scrollpane>
+                    </children>
+                  </grid>
                 </children>
               </grid>
             </children>

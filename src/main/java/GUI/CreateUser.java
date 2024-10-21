@@ -1,7 +1,5 @@
 package GUI;
 
-import com.sun.tools.javac.Main;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,20 +10,25 @@ public class CreateUser extends JFrame {
     private JPanel BtnsPanel;
     private JTextArea taNameUser;
     private JPanel panel1;
-    private JTextArea ta_MHUser;
-    private JSpinner spinner1;
+    private JTextArea taMHUser;
     private JLabel lb_nameuser;
     private JLabel lb_lastnameuser;
     private JLabel lb_emailuser;
     private JLabel lb_phoneuser;
     private JLabel lb_bduser;
     private JPanel lb_sa;
-    private JTextArea ta_lastnameUser;
-    private JTextArea ta_EmailUser;
-    private JTextArea ta_phoneUser;
-    private JTextArea ta_bdUser;
-    private JButton btn_ClearUser;
-    private JButton btn_createButton;
+    private JTextArea talastnameUser;
+    private JTextArea taEmailUser;
+    private JTextArea taphoneUser;
+    private JButton btnClearUser;
+    private JButton btncreateButton;
+    private JPanel Date;
+    private JSpinner YearSpinner;
+    private JSpinner DaySpinner;
+    private JSpinner MonthSpinner;
+    private JScrollPane scroll;
+    private JList AllergiesList;
+    private JList SpecialAttentionList;
 
     private MainForm MF;
     public void openMainForm(MainForm mf) {
@@ -34,11 +37,27 @@ public class CreateUser extends JFrame {
 
     public CreateUser() {
         setContentPane(JframeCreatePanel);
-        btn_createButton.addActionListener(new ActionListener() {
+        btncreateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MF.openCreateUser(CreateUser.this);
                 MF.setVisible(true);
+                setVisible(false);
+            }
+        });
+        btnClearUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                taNameUser.setText("");
+                talastnameUser.setText("");
+                taEmailUser.setText("");
+                taphoneUser.setText("");
+                DaySpinner.setValue(0);
+                MonthSpinner.setValue(0);
+                YearSpinner.setValue(0);
+                AllergiesList.setSelectedIndex(0);
+                SpecialAttentionList.setSelectedIndex(0);
+                taMHUser.setText("");
             }
         });
     }

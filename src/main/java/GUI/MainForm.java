@@ -22,6 +22,16 @@ public class MainForm extends  JFrame {
         this.createdoctor = cd;
     }
 
+    private ViewDoctors viewDoctors = new ViewDoctors();
+    public void openViewDoctors(ViewDoctors vd){
+        this.viewDoctors = vd;
+    }
+
+    private ViewUsers viewUsers = new ViewUsers();
+    public void openViewUsers(ViewUsers u){
+        this.viewUsers = u;
+    }
+
     public MainForm() {
         setContentPane(JFramePanel);
         createUserButton.addActionListener(new ActionListener() {
@@ -40,6 +50,24 @@ public class MainForm extends  JFrame {
                 createdoctor.setSize(800,500);
                 createdoctor.setLocationRelativeTo(null);
                 createdoctor.setVisible(true);
+            }
+        });
+        viewDoctorsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewDoctors.openMainForm(MainForm.this);
+                viewDoctors.setSize(800,400);
+                viewDoctors.setLocationRelativeTo(null);
+                viewDoctors.setVisible(true);
+            }
+        });
+        viewUsersButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewUsers.openMainform(MainForm.this);
+                viewUsers.setSize(800,400);
+                viewUsers.setLocationRelativeTo(null);
+                viewUsers.setVisible(true);
             }
         });
     }
