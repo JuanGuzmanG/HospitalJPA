@@ -8,7 +8,7 @@ public class ViewUsers extends javax.swing.JFrame {
 
     private JPanel Mainpanel;
     private JPanel ViewUsersMain;
-    private JList list1;
+    private JList listUsers;
     private JList list2;
     private JLabel lb_bduser;
     private JPanel Date;
@@ -18,6 +18,12 @@ public class ViewUsers extends javax.swing.JFrame {
     private JButton DELETEButton;
     private JButton SAVECHANGESButton;
     private JButton RETURNButton;
+    private JLabel phone;
+    private JTextField tfName;
+    private JTextField tfLastname;
+    private JTextField tfPhone;
+    private JTextField tfEmail;
+    private JTextArea taHM;
 
     private MainForm mf;
     public void openMainform(MainForm mf) {

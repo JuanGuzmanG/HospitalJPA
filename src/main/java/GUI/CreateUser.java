@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 
 public class CreateUser extends JFrame {
@@ -75,10 +76,17 @@ public class CreateUser extends JFrame {
                 String lastname = talastnameUser.getText();
                 String email = taEmailUser.getText();
                 int phone = Integer.parseInt(taphoneUser.getText());
-                Date date = new Date((int) YearSpinner.getValue(),(int) MonthSpinner.getValue(),(int) DaySpinner.getValue());
+                int year = (int)YearSpinner.getValue();
+                int month = (int)MonthSpinner.getValue();
+                int day = (int)DaySpinner.getValue();
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(year, month-1, day);
+                Date date = calendar.getTime();
                 String history = taMHUser.getText();
 
                 controller.saveUser(name,lastname,email,phone,date,history);
+
+                JOptionPane.showMessageDialog(CreateUser.this, "User created successfully");
             }
         });
     }
