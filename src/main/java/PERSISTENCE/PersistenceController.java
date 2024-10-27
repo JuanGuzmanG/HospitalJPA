@@ -2,6 +2,8 @@ package PERSISTENCE;
 
 import LOGIC.User;
 
+import java.util.List;
+
 public class PersistenceController {
     //===USER===
     UserController uc = new UserController();
@@ -16,5 +18,7 @@ public class PersistenceController {
     }
     public void deleteUser(Long id) {
         uc.deleteUser(id);
+    }
+    public List<User> getAllUsers() {return uc.getAllUsers();
     }
 }

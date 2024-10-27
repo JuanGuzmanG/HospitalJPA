@@ -1,29 +1,24 @@
 package GUI;
 
+import LOGIC.Controller;
+import LOGIC.User;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class ViewUsers extends javax.swing.JFrame {
 
+    Controller controller = null;
+
     private JPanel Mainpanel;
     private JPanel ViewUsersMain;
-    private JList listUsers;
-    private JList list2;
-    private JLabel lb_bduser;
-    private JPanel Date;
-    private JSpinner YearSpinner;
-    private JSpinner DaySpinner;
-    private JSpinner MonthSpinner;
     private JButton DELETEButton;
     private JButton SAVECHANGESButton;
     private JButton RETURNButton;
-    private JLabel phone;
-    private JTextField tfName;
-    private JTextField tfLastname;
-    private JTextField tfPhone;
-    private JTextField tfEmail;
-    private JTextArea taHM;
+    private JTable table;
 
     private MainForm mf;
     public void openMainform(MainForm mf) {
@@ -31,8 +26,14 @@ public class ViewUsers extends javax.swing.JFrame {
     }
 
     public ViewUsers() {
+        controller = new Controller();
         setContentPane(Mainpanel);
-
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                loadInfo(); // Llama a loadInfo al abrir la ventana
+            }
+        });
         RETURNButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,5 +42,30 @@ public class ViewUsers extends javax.swing.JFrame {
                 setVisible(false);
             }
         });
+    }
+
+    private void loadInfo(){
+        DefaultTableModel model = new DefaultTableModel(){
+            //no sean editables
+            @Override
+            public boolean isCellEditable (int row, int column){
+                return false;
+            }
+        };
+
+        String[] titles ={"name", "last name", "email","phone","Medical History","birthday"};
+        model.setColumnIdentifiers(titles);
+
+        List<User> ListUsers = controller.getusers();
+
+        if(ListUsers!=null){
+            for(User u : ListUsers){
+                model.addRow(new Object[]{u.getName(),u.getLastname(),u.getEmail(),u.getPhone(),u.getMedicalHistory(),u.getBrithdate()});
+            }
+        }else {
+            System.out.println("no encontro nada");
+        }
+
+        table.setModel(model);
     }
 }

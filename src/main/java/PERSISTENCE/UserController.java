@@ -2,6 +2,7 @@ package PERSISTENCE;
 
 import LOGIC.User;
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 public class UserController {
@@ -31,10 +32,6 @@ public class UserController {
         return em.find(User.class, id);
     }
 
-    public List<User> getAllUsers() {
-        return em.createQuery("SELECT u FROM User u", User.class).getResultList();
-    }
-
     public void updateUser(User user) {
         try {
             em.getTransaction().begin();
@@ -61,6 +58,23 @@ public class UserController {
                 em.getTransaction().rollback();
             }
             e.printStackTrace();
+        }
+    }
+
+    public List<User> getAllUsers() {return getAllUsers(true,-1,-1);}
+    public List<User> getAllUsers(boolean all, int first, int max) {
+        EntityManager em = emf.createEntityManager();
+        try{
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            cq.select(cq.from(User.class));
+            Query q = em.createQuery(cq);
+            if (!all) {
+                q.setMaxResults(max);
+                q.setFirstResult(first);
+            }
+            return q.getResultList();
+        } finally {
+            em.close();
         }
     }
 

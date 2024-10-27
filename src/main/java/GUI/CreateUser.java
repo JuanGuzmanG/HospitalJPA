@@ -75,7 +75,7 @@ public class CreateUser extends JFrame {
                 String name = taNameUser.getText();
                 String lastname = talastnameUser.getText();
                 String email = taEmailUser.getText();
-                int phone = Integer.parseInt(taphoneUser.getText());
+                Long phone = Long.parseLong(taphoneUser.getText());
                 int year = (int)YearSpinner.getValue();
                 int month = (int)MonthSpinner.getValue();
                 int day = (int)DaySpinner.getValue();

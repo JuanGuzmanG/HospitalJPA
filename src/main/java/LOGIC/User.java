@@ -11,7 +11,7 @@ public class User {
     private String name;
     private String lastname;
     private String email;
-    private int phone;
+    private Long phone;
     private String MedicalHistory;
 @Temporal(TemporalType.DATE)
     private Date brithdate;
@@ -19,7 +19,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, String lastname, String email, int phone, Date brithdate, String medicalHistory) {
+    public User(String name, String lastname, String email, Long phone, Date brithdate, String medicalHistory) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;
@@ -73,11 +73,11 @@ public class User {
         this.email = email;
     }
 
-    public int getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 
