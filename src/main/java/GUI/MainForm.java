@@ -34,6 +34,7 @@ public class MainForm extends  JFrame {
 
     public MainForm() {
         setContentPane(JFramePanel);
+        // CREATE USER
         createUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,6 +44,7 @@ public class MainForm extends  JFrame {
                 createUser.setVisible(true);
             }
         });
+        // CREATE DOCTOR
         createDoctorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,6 +54,7 @@ public class MainForm extends  JFrame {
                 createdoctor.setVisible(true);
             }
         });
+        // VIEW DOCTORS
         viewDoctorsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,12 +64,14 @@ public class MainForm extends  JFrame {
                 viewDoctors.setVisible(true);
             }
         });
+        // VIEW USERS
         viewUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewUsers.openMainform(MainForm.this);
                 viewUsers.setSize(800,400);
                 viewUsers.setLocationRelativeTo(null);
+                viewUsers.loadInfo();
                 viewUsers.setVisible(true);
             }
         });

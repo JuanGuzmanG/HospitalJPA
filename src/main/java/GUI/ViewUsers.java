@@ -28,12 +28,7 @@ public class ViewUsers extends javax.swing.JFrame {
     public ViewUsers() {
         controller = new Controller();
         setContentPane(Mainpanel);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                loadInfo(); // Llama a loadInfo al abrir la ventana
-            }
-        });
+
         RETURNButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,7 +39,7 @@ public class ViewUsers extends javax.swing.JFrame {
         });
     }
 
-    private void loadInfo(){
+    public void loadInfo(){
         DefaultTableModel model = new DefaultTableModel(){
             //no sean editables
             @Override
