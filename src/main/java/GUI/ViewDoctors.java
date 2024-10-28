@@ -13,7 +13,7 @@ public class ViewDoctors extends JFrame {
     private JPanel ViewDoctorpanel;
     private JPanel Mainpanel;
     private JButton DELETEButton;
-    private JButton SAVECHANGESButton;
+    private JButton editBtn;
     private JButton RETURNButton;
     private JTable table;
     private JList list1;
@@ -37,19 +37,40 @@ public class ViewDoctors extends JFrame {
                 setVisible(false);
             }
         });
+        editBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        DELETEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(table.getRowCount() > 0) {
+                    if (table.getSelectedRow() != -1) {
+
+                    }
+                }
+            }
+        });
     }
 
     public void loadinfoDoctors(){
-        DefaultTableModel model = new DefaultTableModel(){};
+        DefaultTableModel model = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row,int column){
+                return false;
+            }
+        };
 
-        String[] titles = {"name","lastname","specialty","phone","address"};
+        String[] titles = {"Document","name","lastname","specialty","phone","address"};
         model.setColumnIdentifiers(titles);
 
         List<Doctor> ListDoctors = controller.getdoctors();
 
         if(ListDoctors!=null){
             for(Doctor d : ListDoctors){
-                model.addRow(new Object[]{d.getName(),d.getLastname(),d.getSpecialty(),d.getPhone(),d.getAddress()});
+                model.addRow(new Object[]{d.getDocument(),d.getName(),d.getLastname(),d.getSpecialty(),d.getPhone(),d.getAddress()});
             }
         }else{
             JOptionPane.showMessageDialog(null, "No Doctors Found");

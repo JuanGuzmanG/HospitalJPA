@@ -10,9 +10,9 @@ public class Controller {
 
     //=================USER==================================
 
-    public void saveUser(String name, String lastname, String email, Long phone, Date brithdate, String medicalHistory){
+    public void saveUser(Long document,String name, String lastname, String email, Long phone, Date brithdate, String medicalHistory){
 
-        User user = new User(name, lastname, email, phone, brithdate, medicalHistory);
+        User user = new User(document,name, lastname, email, phone, brithdate, medicalHistory);
         pc.createUser(user);
     }
 
@@ -21,8 +21,9 @@ public class Controller {
     }
 
     //=================DOCTOR==================================
-    public void saveDoctor(String name,String lastname,String specialty, Long phone,String address){
-        Doctor doctor = new Doctor(name, lastname, specialty, phone, address);
+    public void saveDoctor(Long document,String name,String lastname,String specialty, Long phone,String address){
+        Doctor doctor = new Doctor(document
+                ,name, lastname, specialty, phone, address);
         pc.createDoctor(doctor);
     }
 

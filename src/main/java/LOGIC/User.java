@@ -8,6 +8,7 @@ public class User {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Long Document;
     private String name;
     private String lastname;
     private String email;
@@ -19,7 +20,8 @@ public class User {
     public User() {
     }
 
-    public User(String name, String lastname, String email, Long phone, Date brithdate, String medicalHistory) {
+    public User(Long Document,String name, String lastname, String email, Long phone, Date brithdate, String medicalHistory) {
+        this.Document = Document;
         this.name = name;
         this.lastname = lastname;
         this.email = email;
@@ -28,25 +30,20 @@ public class User {
         MedicalHistory = medicalHistory;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", phone=" + phone +
-                ", brithdate=" + brithdate +
-                ", MedicalHistory='" + MedicalHistory + '\'' +
-                '}';
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getDocument() {
+        return Document;
+    }
+
+    public void setDocument(Long document) {
+        Document = document;
     }
 
     public String getName() {

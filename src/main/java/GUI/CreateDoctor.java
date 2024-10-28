@@ -24,6 +24,8 @@ public class CreateDoctor extends JFrame {
     private JComboBox cbSpecialty;
     private JList list1;
     private JTextArea taphone;
+    private JTextArea taDocument;
+    private JLabel lbDocument;
 
     Controller controller = new Controller();
 
@@ -56,13 +58,14 @@ public class CreateDoctor extends JFrame {
         btn_createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Long document = Long.valueOf(taDocument.getText());
                 String name = taNameDoctor.getText();
                 String lastname = taLastname.getText();
                 Long phone = Long.parseLong(taphone.getText());
                 String Specialty = Objects.requireNonNull(cbSpecialty.getSelectedItem()).toString();
                 String address = taaddres.getText();
 
-                controller.saveDoctor(name,lastname,Specialty,phone,address);
+                controller.saveDoctor(document,name,lastname,Specialty,phone,address);
 
                 JOptionPane.showMessageDialog(CreateDoctor.this, "Doctor created successfully");
             }

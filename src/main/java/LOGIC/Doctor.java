@@ -8,6 +8,7 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Long Document;
     private String name;
     private String lastname;
     private String specialty;
@@ -20,25 +21,13 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(String name, String lastname, String specialty, Long phone, String address) {
+    public Doctor(Long Document,String name, String lastname, String specialty, Long phone, String address) {
+        this.Document = Document;
         this.name = name;
         this.lastname = lastname;
         this.specialty = specialty;
         this.phone = phone;
         this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return "Doctor{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", specialty='" + specialty + '\'' +
-                ", phone=" + phone +
-                ", address='" + address + '\'' +
-                ", user=" + user +
-                '}';
     }
 
     public LinkedList<User> getUser() {
@@ -55,6 +44,14 @@ public class Doctor {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getDocument() {
+        return Document;
+    }
+
+    public void setDocument(Long document) {
+        Document = document;
     }
 
     public String getName() {

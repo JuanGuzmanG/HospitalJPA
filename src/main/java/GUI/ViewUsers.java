@@ -16,7 +16,7 @@ public class ViewUsers extends javax.swing.JFrame {
     private JPanel Mainpanel;
     private JPanel ViewUsersMain;
     private JButton DELETEButton;
-    private JButton SAVECHANGESButton;
+    private JButton EditBtn;
     private JButton RETURNButton;
     private JTable table;
 
@@ -44,18 +44,18 @@ public class ViewUsers extends javax.swing.JFrame {
             //no sean editables
             @Override
             public boolean isCellEditable (int row, int column){
-                return true;
+                return false;
             }
         };
 
-        String[] titles ={"name", "last name", "email","phone","Medical History","birthday"};
+        String[] titles ={"document","name", "last name", "email","phone","Medical History","birthday"};
         model.setColumnIdentifiers(titles);
 
         List<User> ListUsers = controller.getusers();
 
         if(ListUsers!=null){
             for(User u : ListUsers){
-                model.addRow(new Object[]{u.getName(),u.getLastname(),u.getEmail(),u.getPhone(),u.getMedicalHistory(),u.getBrithdate()});
+                model.addRow(new Object[]{u.getDocument(),u.getName(),u.getLastname(),u.getEmail(),u.getPhone(),u.getMedicalHistory(),u.getBrithdate()});
             }
         }else {
             System.out.println("no encontro nada");

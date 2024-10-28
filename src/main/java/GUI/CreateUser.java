@@ -34,6 +34,8 @@ public class CreateUser extends JFrame {
     private JScrollPane scroll;
     private JList AllergiesList;
     private JList SpecialAttentionList;
+    private JLabel Documentlb;
+    private JTextArea taDocument;
 
     Controller controller = new Controller();
 
@@ -72,6 +74,7 @@ public class CreateUser extends JFrame {
         btncreateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Long document = Long.valueOf(taDocument.getText());
                 String name = taNameUser.getText();
                 String lastname = talastnameUser.getText();
                 String email = taEmailUser.getText();
@@ -84,7 +87,7 @@ public class CreateUser extends JFrame {
                 Date date = calendar.getTime();
                 String history = taMHUser.getText();
 
-                controller.saveUser(name,lastname,email,phone,date,history);
+                controller.saveUser(document,name,lastname,email,phone,date,history);
 
                 JOptionPane.showMessageDialog(CreateUser.this, "User created successfully");
             }
