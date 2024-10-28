@@ -44,7 +44,7 @@ public class ViewUsers extends javax.swing.JFrame {
             //no sean editables
             @Override
             public boolean isCellEditable (int row, int column){
-                return false;
+                return true;
             }
         };
 

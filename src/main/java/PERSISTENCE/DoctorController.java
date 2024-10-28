@@ -4,6 +4,7 @@ import LOGIC.Doctor;
 import LOGIC.User;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 public class DoctorController {
@@ -66,12 +67,21 @@ public class DoctorController {
         }
     }
 
-    public List<User> getUsersForDoctor(Long doctorId) {
-        Doctor doctor = getDoctor(doctorId);
-        if (doctor != null) {
-            return doctor.getUser();
+    public List<Doctor> getAlldoctors(){return getAlldoctors(true,-1,-1);}
+    public List<Doctor> getAlldoctors(boolean all,int first,int max){
+        EntityManager em = emf.createEntityManager();
+        try {
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            cq.select(cq.from(Doctor.class));
+            Query q = em.createQuery(cq);
+            if(!all){
+                q.setMaxResults(max);
+                q.setFirstResult(first);
+            }
+            return q.getResultList();
+        } finally {
+            em.close();
         }
-        return null;
     }
 
     public void close() {

@@ -11,13 +11,21 @@ public class Doctor {
     private String name;
     private String lastname;
     private String specialty;
-    private int phone;
+    private Long phone;
     private String address;
 
     @ManyToMany
     private LinkedList<User> user;
 
     public Doctor() {
+    }
+
+    public Doctor(String name, String lastname, String specialty, Long phone, String address) {
+        this.name = name;
+        this.lastname = lastname;
+        this.specialty = specialty;
+        this.phone = phone;
+        this.address = address;
     }
 
     @Override
@@ -73,11 +81,11 @@ public class Doctor {
         this.specialty = specialty;
     }
 
-    public int getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 

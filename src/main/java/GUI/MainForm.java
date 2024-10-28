@@ -34,6 +34,8 @@ public class MainForm extends  JFrame {
 
     public MainForm() {
         setContentPane(JFramePanel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         // CREATE USER
         createUserButton.addActionListener(new ActionListener() {
             @Override
@@ -61,6 +63,7 @@ public class MainForm extends  JFrame {
                 viewDoctors.openMainForm(MainForm.this);
                 viewDoctors.setSize(800,400);
                 viewDoctors.setLocationRelativeTo(null);
+                viewDoctors.loadinfoDoctors();
                 viewDoctors.setVisible(true);
             }
         });

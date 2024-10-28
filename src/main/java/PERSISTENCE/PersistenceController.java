@@ -1,5 +1,6 @@
 package PERSISTENCE;
 
+import LOGIC.Doctor;
 import LOGIC.User;
 
 import java.util.List;
@@ -19,6 +20,11 @@ public class PersistenceController {
     public void deleteUser(Long id) {
         uc.deleteUser(id);
     }
-    public List<User> getAllUsers() {return uc.getAllUsers();
-    }
+    public List<User> getAllUsers() {return uc.getAllUsers();}
+
+
+    public void createDoctor(Doctor doctor) {dc.createDoctor(doctor);}
+    public void editDoctor(Doctor doctor) {dc.updateDoctor(doctor);}
+    public void deleteDoctor(Long id) {dc.deleteDoctor(id);}
+    public List<Doctor> getAllDoctors() {return dc.getAlldoctors();}
 }
