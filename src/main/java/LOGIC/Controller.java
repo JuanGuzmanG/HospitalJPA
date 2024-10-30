@@ -2,6 +2,7 @@ package LOGIC;
 
 import PERSISTENCE.PersistenceController;
 
+import javax.print.Doc;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,6 @@ public class Controller {
         User user = new User(document,name, lastname, email, phone, brithdate, medicalHistory);
         pc.createUser(user);
     }
-
     public List<User> getusers(){
         return pc.getAllUsers();
     }
@@ -26,8 +26,11 @@ public class Controller {
                 ,name, lastname, specialty, phone, address);
         pc.createDoctor(doctor);
     }
-
     public List<Doctor> getdoctors(){
         return pc.getAllDoctors();
     }
+    public void Deletedoctor(Long document){pc.deleteDoctor(document);}
+    public Doctor findDoctorByDocument(Long document){
+        return pc.findDoctorByDocument(document);
+    };
 }

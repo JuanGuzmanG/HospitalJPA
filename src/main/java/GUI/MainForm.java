@@ -63,7 +63,7 @@ public class MainForm extends  JFrame {
                 viewDoctors.openMainForm(MainForm.this);
                 viewDoctors.setSize(800,400);
                 viewDoctors.setLocationRelativeTo(null);
-                viewDoctors.loadinfoDoctors();
+                viewDoctors.loadinfo();
                 viewDoctors.setVisible(true);
             }
         });

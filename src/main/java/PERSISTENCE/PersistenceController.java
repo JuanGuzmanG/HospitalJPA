@@ -6,7 +6,7 @@ import LOGIC.User;
 import java.util.List;
 
 public class PersistenceController {
-    //===USER===
+    //===USER=====
     UserController uc = new UserController();
     //===DOCTOR===
     DoctorController dc = new DoctorController();
@@ -22,9 +22,11 @@ public class PersistenceController {
     }
     public List<User> getAllUsers() {return uc.getAllUsers();}
 
-
     public void createDoctor(Doctor doctor) {dc.createDoctor(doctor);}
     public void editDoctor(Doctor doctor) {dc.updateDoctor(doctor);}
     public void deleteDoctor(Long id) {dc.deleteDoctor(id);}
     public List<Doctor> getAllDoctors() {return dc.getAlldoctors();}
+    public Doctor findDoctorByDocument(Long document){
+        return dc.findDoctorByDocument(document);
+    }
 }

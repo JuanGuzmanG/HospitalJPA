@@ -4,7 +4,9 @@ import LOGIC.Doctor;
 import LOGIC.User;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class DoctorController {
@@ -34,9 +36,6 @@ public class DoctorController {
         return em.find(Doctor.class, id);
     }
 
-    public List<Doctor> getAllDoctors() {
-        return em.createQuery("SELECT d FROM Doctor d", Doctor.class).getResultList();
-    }
 
     public void updateDoctor(Doctor doctor) {
         try {
@@ -64,6 +63,22 @@ public class DoctorController {
                 em.getTransaction().rollback();
             }
             e.printStackTrace();
+        }
+    }
+
+    public Doctor findDoctorByDocument(Long document) {
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Doctor> cq = cb.createQuery(Doctor.class);
+            Root<Doctor> doctor = cq.from(Doctor.class);
+            cq.select(doctor).where(cb.equal(doctor.get("Document"), document));
+
+            return em.createQuery(cq).getSingleResult();
+        } catch (NoResultException e) {
+            return null; // Si no se encuentra un doctor con el documento especificado
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
