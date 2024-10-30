@@ -28,7 +28,7 @@ public class CreateDoctor extends JFrame {
     private JLabel lbDocument;
 
     Controller controller = new Controller();
-
+    String[] opciones = {"-","Opción 1", "Opción 2", "Opción 3", "Opción 4"};
     private MainForm mainForm;
     public void openMainForm(MainForm mf) {
         this.mainForm = mf;
@@ -36,6 +36,10 @@ public class CreateDoctor extends JFrame {
 
     public CreateDoctor() {
         setContentPane(JFrameCreateDoctor);
+
+        for(String o : opciones) {
+            cbSpecialty.addItem(o);
+        }
 
         btn_createButton.addActionListener(new ActionListener() {
             @Override

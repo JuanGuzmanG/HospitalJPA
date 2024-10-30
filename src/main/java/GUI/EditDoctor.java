@@ -23,7 +23,7 @@ public class EditDoctor extends javax.swing.JFrame {
     private JTextField taPhone;
 
     Controller controller = new Controller();
-
+    String[] opciones = {"-","Opción 1", "Opción 2", "Opción 3", "Opción 4"};
     private ViewDoctors vd;
     public void openMainForm(ViewDoctors vd,Long Document) {
         this.vd = vd;
@@ -32,6 +32,11 @@ public class EditDoctor extends javax.swing.JFrame {
 
     public EditDoctor() {
         setContentPane(EditDoctorpanel);
+
+
+        for(String o : opciones) {
+            cbSpecialty.addItem(o);
+        }
 
         RETURNButton.addActionListener(new ActionListener() {
             @Override
@@ -52,8 +57,11 @@ public class EditDoctor extends javax.swing.JFrame {
         taLastname.setText(doctor.getLastname());
         taAddress.setText(doctor.getAddress());
         taPhone.setText(doctor.getPhone().toString());
-        for(cbSpecialty.)
-        cbSpecialty.setSelectedItem();
+        for (String o : opciones){
+            if(o.equals(doctor.getSpecialty())){
+                cbSpecialty.setSelectedItem(o);
+            }
+        }
 
     }
 
