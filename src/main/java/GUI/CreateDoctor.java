@@ -1,8 +1,11 @@
 package GUI;
 
 import LOGIC.Controller;
+import com.sun.tools.javac.Main;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
@@ -36,6 +39,12 @@ public class CreateDoctor extends JFrame {
 
     public CreateDoctor() {
         setContentPane(JFrameCreateDoctor);
+
+        MainForm.setTabTraversal(taDocument);
+        MainForm.setTabTraversal(taNameDoctor);
+        MainForm.setTabTraversal(taLastname);
+        MainForm.setTabTraversal(taaddres);
+        MainForm.setTabTraversal(taphone);
 
         for(String o : opciones) {
             cbSpecialty.addItem(o);

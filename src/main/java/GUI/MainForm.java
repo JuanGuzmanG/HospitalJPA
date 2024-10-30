@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,22 +12,26 @@ public class MainForm extends  JFrame {
     private JButton createDoctorButton;
     private JButton createUserButton;
     private JPanel MainPanel;
+    private JTextArea textArea;
 
+    public static void setTabTraversal(JTextArea textArea) {
+        textArea.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, null);
+        textArea.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, null);
+    }
+
+    //WINDOWS
     private CreateUser createUser = new CreateUser();
     public void openCreateUser(CreateUser cs){
         this.createUser = cs;
     }
-
     private CreateDoctor createdoctor = new CreateDoctor();
     public void openCreateDoctor(CreateDoctor cd){
         this.createdoctor = cd;
     }
-
     private ViewDoctors viewDoctors = new ViewDoctors();
     public void openViewDoctors(ViewDoctors vd){
         this.viewDoctors = vd;
     }
-
     private ViewUsers viewUsers = new ViewUsers();
     public void openViewUsers(ViewUsers u){
         this.viewUsers = u;
@@ -35,6 +40,8 @@ public class MainForm extends  JFrame {
     public MainForm() {
         setContentPane(JFramePanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JTextArea textArea1 = textArea;
 
         // CREATE USER
         createUserButton.addActionListener(new ActionListener() {
