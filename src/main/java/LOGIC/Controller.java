@@ -33,4 +33,5 @@ public class Controller {
     public Doctor findDoctorByDocument(Long document){
         return pc.findDoctorByDocument(document);
     };
+    public void updateDoctor(Doctor doctor){pc.updateDoctor(doctor);}
 }

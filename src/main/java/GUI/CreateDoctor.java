@@ -31,7 +31,8 @@ public class CreateDoctor extends JFrame {
     private JLabel lbDocument;
 
     Controller controller = new Controller();
-    String[] opciones = {"-","Opción 1", "Opción 2", "Opción 3", "Opción 4"};
+
+    //MAIN WINDOW
     private MainForm mainForm;
     public void openMainForm(MainForm mf) {
         this.mainForm = mf;
@@ -46,7 +47,7 @@ public class CreateDoctor extends JFrame {
         MainForm.setTabTraversal(taaddres);
         MainForm.setTabTraversal(taphone);
 
-        for(String o : opciones) {
+        for(String o : MainForm.) {
             cbSpecialty.addItem(o);
         }
 

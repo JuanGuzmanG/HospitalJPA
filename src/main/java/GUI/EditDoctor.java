@@ -46,6 +46,34 @@ public class EditDoctor extends javax.swing.JFrame {
                 setVisible(false);
             }
         });
+
+
+        CLEARButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                taDocument.setText("");
+                taName.setText("");
+                taLastname.setText("");
+                taAddress.setText("");
+                taPhone.setText("");
+                cbSpecialty.setSelectedIndex(0);
+            }
+        });
+
+        SAVEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Long Document = Long.parseLong(taDocument.getText());
+                String name = taName.getText();
+                String lastname = taLastname.getText();
+                String address = taAddress.getText();
+                Long phone = Long.parseLong(taPhone.getText());
+                String specialty = cbSpecialty.getSelectedItem().toString();
+
+                Doctor doctor = new Doctor(Document,name,lastname,address,phone,specialty);
+                controller.updateDoctor(doctor);
+            }
+        });
     }
 
     private void upload(Long document){
