@@ -47,7 +47,7 @@ public class CreateDoctor extends JFrame {
         MainForm.setTabTraversal(taaddres);
         MainForm.setTabTraversal(taphone);
 
-        for(String o : MainForm.) {
+        for(String o : mainForm.OptionsDoctor) {
             cbSpecialty.addItem(o);
         }
 
