@@ -22,19 +22,19 @@ public class EditDoctor extends javax.swing.JFrame {
     private JTextField taAddress;
     private JTextField taPhone;
 
+    Doctor doctor;
     Controller controller = new Controller();
-    String[] opciones = {"-","Opción 1", "Opción 2", "Opción 3", "Opción 4"};
     private ViewDoctors vd;
     public void openMainForm(ViewDoctors vd,Long Document) {
         this.vd = vd;
         upload(Document);
+        doctor = controller.findDoctorByDocument(Document);
     }
 
     public EditDoctor() {
         setContentPane(EditDoctorpanel);
 
-
-        for(String o : opciones) {
+        for(String o : MainForm.OptionsDoctor) {
             cbSpecialty.addItem(o);
         }
 
@@ -46,7 +46,6 @@ public class EditDoctor extends javax.swing.JFrame {
                 setVisible(false);
             }
         });
-
 
         CLEARButton.addActionListener(new ActionListener() {
             @Override
@@ -70,8 +69,13 @@ public class EditDoctor extends javax.swing.JFrame {
                 Long phone = Long.parseLong(taPhone.getText());
                 String specialty = cbSpecialty.getSelectedItem().toString();
 
-                Doctor doctor = new Doctor(Document,name,lastname,address,phone,specialty);
-                controller.updateDoctor(doctor);
+                controller.updateDoctor(doctor,Document,name,lastname,address,phone,specialty);
+
+                vd.openEditdoctor(EditDoctor.this);
+                vd.setVisible(true);
+                vd.loadinfo();
+                setVisible(false);
+
             }
         });
     }
@@ -85,12 +89,11 @@ public class EditDoctor extends javax.swing.JFrame {
         taLastname.setText(doctor.getLastname());
         taAddress.setText(doctor.getAddress());
         taPhone.setText(doctor.getPhone().toString());
-        for (String o : opciones){
+        for (String o : MainForm.OptionsDoctor){
             if(o.equals(doctor.getSpecialty())){
                 cbSpecialty.setSelectedItem(o);
             }
         }
 
     }
-
 }

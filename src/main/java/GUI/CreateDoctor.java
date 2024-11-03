@@ -1,11 +1,9 @@
 package GUI;
 
 import LOGIC.Controller;
-import com.sun.tools.javac.Main;
+
 
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
@@ -31,7 +29,6 @@ public class CreateDoctor extends JFrame {
     private JLabel lbDocument;
 
     Controller controller = new Controller();
-
     //MAIN WINDOW
     private MainForm mainForm;
     public void openMainForm(MainForm mf) {
@@ -47,18 +44,10 @@ public class CreateDoctor extends JFrame {
         MainForm.setTabTraversal(taaddres);
         MainForm.setTabTraversal(taphone);
 
-        for(String o : mainForm.OptionsDoctor) {
+        for(String o : MainForm.OptionsDoctor) {
             cbSpecialty.addItem(o);
         }
 
-        btn_createButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainForm.openCreateDoctor(CreateDoctor.this);
-                mainForm.setVisible(true);
-                setVisible(false);
-            }
-        });
         btn_ClearDoctor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,9 +58,14 @@ public class CreateDoctor extends JFrame {
                 pacientslist.setSelectedIndex(0);
             }
         });
+
         btn_createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                mainForm.openCreateDoctor(CreateDoctor.this);
+                mainForm.setVisible(true);
+                setVisible(false);
+
                 Long document = Long.valueOf(taDocument.getText());
                 String name = taNameDoctor.getText();
                 String lastname = taLastname.getText();

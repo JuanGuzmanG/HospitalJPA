@@ -33,5 +33,13 @@ public class Controller {
     public Doctor findDoctorByDocument(Long document){
         return pc.findDoctorByDocument(document);
     };
-    public void updateDoctor(Doctor doctor){pc.updateDoctor(doctor);}
+    public void updateDoctor(Doctor doctor,Long document, String name,String lastname,String address,Long phone,String specialty ){
+        doctor.setDocument(document);
+        doctor.setName(name);
+        doctor.setLastname(lastname);
+        doctor.setAddress(address);
+        doctor.setPhone(phone);
+        doctor.setSpecialty(specialty);
+        pc.updateDoctor(doctor);
+    }
 }

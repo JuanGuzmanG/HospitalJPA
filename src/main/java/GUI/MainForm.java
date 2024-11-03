@@ -19,10 +19,6 @@ public class MainForm extends  JFrame {
         textArea.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, null);
     }
 
-    public String[] OptionsDoctor = {"-","Pediatrics", "General-Medicine", "Optometry", "Gastroenterology"};
-    public String[] Allergies = {"-","Peanut","Acetaminophen","Aspirin","Ibuprofen"};
-    public String[] SAttention = {"-","diabetic","hypertensive","heart-problems","disorder"};
-
     //WINDOWS
     private CreateUser createUser = new CreateUser();
     public void openCreateUser(CreateUser cs){
@@ -40,6 +36,10 @@ public class MainForm extends  JFrame {
     public void openViewUsers(ViewUsers u){
         this.viewUsers = u;
     }
+
+    public static String[] OptionsDoctor = {"-","Pediatrics", "General-Medicine", "Optometry", "Gastroenterology"};
+    public static String[] Allergies = {"-","Peanut","Acetaminophen","Aspirin","Ibuprofen"};
+    public static String[] SAttention = {"-","diabetic","hypertensive","heart-problems","disorder"};
 
     public MainForm() {
         setContentPane(JFramePanel);
