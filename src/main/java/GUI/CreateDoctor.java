@@ -81,18 +81,5 @@ public class CreateDoctor extends JFrame {
                 JOptionPane.showMessageDialog(CreateDoctor.this, "Doctor created successfully");
             }
         });
-
-        DefaultTableModel model = new DefaultTableModel(){
-            //no sean editables
-            @Override
-            public boolean isCellEditable (int row, int column){
-                return false;
-            }
-        };
-        List<User> users = controller.getusers();
-        for (User user : users) {
-            model.addRow(new Object[]{user.getName(),user.getDocument()});
-        }
-        pacientslist.add(model);
     }
 }
