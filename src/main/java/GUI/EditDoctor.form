@@ -228,7 +228,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="4a373" class="javax.swing.JList" binding="listPacients">
+                      <component id="b03dd" class="javax.swing.JTable" binding="table">
                         <constraints/>
                         <properties/>
                       </component>

@@ -1,11 +1,14 @@
 package GUI;
 
 import LOGIC.Controller;
+import LOGIC.User;
 
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Objects;
 
 public class CreateDoctor extends JFrame {
@@ -78,5 +81,18 @@ public class CreateDoctor extends JFrame {
                 JOptionPane.showMessageDialog(CreateDoctor.this, "Doctor created successfully");
             }
         });
+
+        DefaultTableModel model = new DefaultTableModel(){
+            //no sean editables
+            @Override
+            public boolean isCellEditable (int row, int column){
+                return false;
+            }
+        };
+        List<User> users = controller.getusers();
+        for (User user : users) {
+            model.addRow(new Object[]{user.getName(),user.getDocument()});
+        }
+        pacientslist.add(model);
     }
 }

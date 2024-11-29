@@ -2,17 +2,18 @@ package GUI;
 
 import LOGIC.Controller;
 import LOGIC.Doctor;
+import LOGIC.User;
 
 import javax.swing.*;
-import javax.swing.text.Document;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class EditDoctor extends javax.swing.JFrame {
     private JPanel EditDoctorpanel;
     private JPanel Mainpanel;
     private JTextField taDocument;
-    private JList listPacients;
     private JComboBox cbSpecialty;
     private JButton RETURNButton;
     private JButton SAVEButton;
@@ -21,6 +22,7 @@ public class EditDoctor extends javax.swing.JFrame {
     private JTextField taLastname;
     private JTextField taAddress;
     private JTextField taPhone;
+    private JTable table;
 
     Doctor doctor;
     Controller controller = new Controller();
@@ -75,7 +77,6 @@ public class EditDoctor extends javax.swing.JFrame {
                 vd.setVisible(true);
                 vd.loadinfo();
                 setVisible(false);
-
             }
         });
     }
@@ -95,5 +96,26 @@ public class EditDoctor extends javax.swing.JFrame {
             }
         }
 
+        List<User> Users = controller.getusers();
+
+        DefaultTableModel model = new DefaultTableModel(){
+            //no sean editables
+            @Override
+            public boolean isCellEditable (int row, int column){
+                return false;
+            }
+        };
+        String[] titles ={"document","name", "last name", "email","phone","Medical History","birthday"};
+        model.setColumnIdentifiers(titles);
+
+        if(Users!=null){
+            for(User u : Users){
+                model.addRow(new Object[]{u.getDocument(),u.getName(),u.getLastname(),u.getEmail(),u.getPhone(),u.getMedicalHistory(),u.getBrithdate()});
+            }
+        }else {
+            System.out.println("no encontro nada");
+        }
+
+        table.setModel(model);
     }
 }

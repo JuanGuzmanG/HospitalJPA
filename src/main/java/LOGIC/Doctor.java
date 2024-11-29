@@ -2,6 +2,7 @@ package LOGIC;
 
 import javax.persistence.*;
 import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 public class Doctor {
@@ -16,7 +17,7 @@ public class Doctor {
     private String address;
 
     @ManyToMany
-    private LinkedList<User> user;
+    private List<User> user;
 
     public Doctor() {
     }
@@ -30,7 +31,7 @@ public class Doctor {
         this.address = address;
     }
 
-    public LinkedList<User> getUser() {
+    public List<User> getUser() {
         return user;
     }
 

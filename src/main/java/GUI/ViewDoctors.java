@@ -83,6 +83,7 @@ public class ViewDoctors extends JFrame {
                 }
             }
         });
+
     }
 
     //MESSAGE ACTIONS
