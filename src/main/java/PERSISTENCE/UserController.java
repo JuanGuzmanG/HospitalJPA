@@ -1,8 +1,11 @@
 package PERSISTENCE;
 
+import LOGIC.Doctor;
 import LOGIC.User;
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class UserController {
@@ -16,6 +19,7 @@ public class UserController {
     }
 
     public void createUser(User user) {
+        em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(user);
@@ -25,6 +29,8 @@ public class UserController {
                 em.getTransaction().rollback();
             }
             e.printStackTrace();
+        }finally {
+            em.close();
         }
     }
 
@@ -33,6 +39,7 @@ public class UserController {
     }
 
     public void updateUser(User user) {
+        em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.merge(user);
@@ -42,10 +49,13 @@ public class UserController {
                 em.getTransaction().rollback();
             }
             e.printStackTrace();
+        }finally {
+            em.close();
         }
     }
 
     public void deleteUser(Long id) {
+        em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             User user = em.find(User.class, id);
@@ -58,6 +68,23 @@ public class UserController {
                 em.getTransaction().rollback();
             }
             e.printStackTrace();
+        }finally {
+            em.close();
+        }
+    }
+
+    public User findUserByDocument(Long document) {
+        em = emf.createEntityManager();
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<User> cq = cb.createQuery(User.class);
+            Root<User> user = cq.from(User.class);
+            cq.select(user).where(cb.equal(user.get("Document"), document));
+            return em.createQuery(cq).getSingleResult();  // Debería devolver el usuario gestionado si existe
+        } catch (NoResultException e) {
+            return null; // Si no se encuentra el usuario
+        } finally {
+            em.close();
         }
     }
 
@@ -75,15 +102,6 @@ public class UserController {
             return q.getResultList();
         } finally {
             em.close();
-        }
-    }
-
-    public void close() {
-        if (em.isOpen()) {
-            em.close();
-        }
-        if (emf.isOpen()) {
-            emf.close();
         }
     }
 }

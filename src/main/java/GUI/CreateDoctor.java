@@ -5,9 +5,6 @@ import LOGIC.User;
 
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +21,6 @@ public class CreateDoctor extends JFrame {
     private JLabel lb_phone;
     private JTextArea taLastname;
     private JTextArea taaddres;
-    private JList pacientslist;
     private JComboBox cbSpecialty;
     private JList list1;
     private JTextArea taphone;
@@ -51,20 +47,15 @@ public class CreateDoctor extends JFrame {
             cbSpecialty.addItem(o);
         }
 
-        btn_ClearDoctor.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        btn_ClearDoctor.addActionListener(e -> {
                 taNameDoctor.setText("");
                 taLastname.setText("");
                 taaddres.setText("");
                 cbSpecialty.setSelectedIndex(0);
-                pacientslist.setSelectedIndex(0);
-            }
+                list1.setSelectedIndex(0);
         });
 
-        btn_createButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        btn_createButton.addActionListener(e -> {
                 mainForm.openCreateDoctor(CreateDoctor.this);
                 mainForm.setVisible(true);
                 setVisible(false);
@@ -75,11 +66,22 @@ public class CreateDoctor extends JFrame {
                 Long phone = Long.parseLong(taphone.getText());
                 String Specialty = Objects.requireNonNull(cbSpecialty.getSelectedItem()).toString();
                 String address = taaddres.getText();
+                List<User> users = list1.getSelectedValuesList();
 
-                controller.saveDoctor(document,name,lastname,Specialty,phone,address);
+                controller.saveDoctor(document,name,lastname,Specialty,phone,address,users);
 
                 JOptionPane.showMessageDialog(CreateDoctor.this, "Doctor created successfully");
-            }
         });
+    }
+
+    public void loadinfo(){
+        DefaultListModel<User> usersmodel = new DefaultListModel<>();
+        List<User> users = controller.getusers();
+        if (users != null) {
+            for (User user : users) {
+                usersmodel.addElement(user);
+            }
+            list1.setModel(usersmodel);
+        }
     }
 }

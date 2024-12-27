@@ -53,8 +53,10 @@ public class MainForm extends  JFrame {
             public void actionPerformed(ActionEvent e) {
                 createUser.openMainForm(MainForm.this);
                 createUser.setSize(800,500);
-                createUser.setLocationRelativeTo(null);
+                createUser.setLocationRelativeTo(MainForm.this);
+                createdoctor.loadinfo();
                 createUser.setVisible(true);
+                createUser.upload();
             }
         });
         // CREATE DOCTOR
@@ -63,8 +65,9 @@ public class MainForm extends  JFrame {
             public void actionPerformed(ActionEvent e) {
                 createdoctor.openMainForm(MainForm.this);
                 createdoctor.setSize(800,500);
-                createdoctor.setLocationRelativeTo(null);
+                createdoctor.setLocationRelativeTo(MainForm.this);
                 createdoctor.setVisible(true);
+                createdoctor.loadinfo();
             }
         });
         // VIEW DOCTORS
@@ -73,7 +76,7 @@ public class MainForm extends  JFrame {
             public void actionPerformed(ActionEvent e) {
                 viewDoctors.openMainForm(MainForm.this);
                 viewDoctors.setSize(800,400);
-                viewDoctors.setLocationRelativeTo(null);
+                viewDoctors.setLocationRelativeTo(MainForm.this);
                 viewDoctors.loadinfo();
                 viewDoctors.setVisible(true);
             }
@@ -84,7 +87,7 @@ public class MainForm extends  JFrame {
             public void actionPerformed(ActionEvent e) {
                 viewUsers.openMainform(MainForm.this);
                 viewUsers.setSize(800,400);
-                viewUsers.setLocationRelativeTo(null);
+                viewUsers.setLocationRelativeTo(MainForm.this);
                 viewUsers.loadInfo();
                 viewUsers.setVisible(true);
             }

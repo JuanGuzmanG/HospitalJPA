@@ -7,8 +7,8 @@ import java.util.List;
 @Entity
 public class Doctor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_doc;
     private Long Document;
     private String name;
     private String lastname;
@@ -16,8 +16,8 @@ public class Doctor {
     private Long phone;
     private String address;
 
-    @ManyToMany
-    private List<User> user;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<User> users;
 
     public Doctor() {
     }
@@ -31,20 +31,30 @@ public class Doctor {
         this.address = address;
     }
 
-    public List<User> getUser() {
-        return user;
+    public Doctor(Long Document,String name, String lastname, String specialty, Long phone, String address,List<User> users) {
+        this.Document = Document;
+        this.name = name;
+        this.lastname = lastname;
+        this.specialty = specialty;
+        this.phone = phone;
+        this.address = address;
+        this.users = users;
     }
 
-    public void setUser(LinkedList<User> user) {
-        this.user = user;
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public Long getId() {
-        return id;
+        return id_doc;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id_doc = id;
     }
 
     public Long getDocument() {
@@ -93,5 +103,9 @@ public class Doctor {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String toString(){
+        return specialty +" "+name+" "+lastname;
     }
 }

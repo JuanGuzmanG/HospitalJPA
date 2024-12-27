@@ -26,6 +26,8 @@ public class EditDoctor extends javax.swing.JFrame {
 
     Doctor doctor;
     Controller controller = new Controller();
+
+    //----window
     private ViewDoctors vd;
     public void openMainForm(ViewDoctors vd,Long Document) {
         this.vd = vd;
@@ -36,10 +38,12 @@ public class EditDoctor extends javax.swing.JFrame {
     public EditDoctor() {
         setContentPane(EditDoctorpanel);
 
+        //----specialty menu
         for(String o : MainForm.OptionsDoctor) {
             cbSpecialty.addItem(o);
         }
 
+        //----return button
         RETURNButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,6 +53,7 @@ public class EditDoctor extends javax.swing.JFrame {
             }
         });
 
+        //----clear button
         CLEARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,6 +66,7 @@ public class EditDoctor extends javax.swing.JFrame {
             }
         });
 
+        //----save button
         SAVEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,6 +87,7 @@ public class EditDoctor extends javax.swing.JFrame {
         });
     }
 
+    //----upload changes
     private void upload(Long document){
         Doctor doctor = new Doctor();
         doctor = controller.findDoctorByDocument(document);

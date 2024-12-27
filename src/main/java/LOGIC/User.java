@@ -1,13 +1,15 @@
 package LOGIC;
 
 import javax.persistence.*;
+import javax.print.Doc;
+import javax.swing.*;
 import java.util.*;
 
 @Entity
 public class User {
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_user;
     private Long Document;
     private String name;
     private String lastname;
@@ -16,6 +18,9 @@ public class User {
     private String MedicalHistory;
 @Temporal(TemporalType.DATE)
     private Date brithdate;
+
+@ManyToMany(cascade = CascadeType.ALL)
+    private List<Doctor> doctors;
 
     public User() {
     }
@@ -30,12 +35,23 @@ public class User {
         MedicalHistory = medicalHistory;
     }
 
+    public User(Long Document, String name, String lastname, String email, Long phone, Date brithdate, String medicalHistory, List<Doctor> doctors) {
+        this.Document = Document;
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.brithdate = brithdate;
+        this.MedicalHistory = medicalHistory;
+        this.doctors = doctors;
+    }
+
     public Long getId() {
-        return id;
+        return id_user;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id_user = id;
     }
 
     public Long getDocument() {
@@ -93,8 +109,16 @@ public class User {
     public void setMedicalHistory(String medicalHistory) {
         MedicalHistory = medicalHistory;
     }
+
+    public List<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(List<Doctor> doctors) {
+        this.doctors = doctors;
+    }
+
+    public String toString() {
+        return name+" "+lastname;
+    }
 }
-
-
-/*    private List<String> Allergies;
-    private String SpecialAttention;*/

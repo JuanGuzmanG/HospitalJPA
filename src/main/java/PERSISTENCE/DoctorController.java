@@ -20,6 +20,7 @@ public class DoctorController {
     }
 
     public void createDoctor(Doctor doctor) {
+        em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(doctor);
@@ -29,6 +30,8 @@ public class DoctorController {
                 em.getTransaction().rollback();
             }
             e.printStackTrace();
+        }finally {
+            em.close();
         }
     }
 
@@ -38,6 +41,7 @@ public class DoctorController {
 
 
     public void updateDoctor(Doctor doctor) {
+        em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.merge(doctor);
@@ -47,10 +51,13 @@ public class DoctorController {
                 em.getTransaction().rollback();
             }
             e.printStackTrace();
+        }finally {
+            em.close();
         }
     }
 
     public void deleteDoctor(Long id) {
+        em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             Doctor doctor = em.find(Doctor.class, id);
@@ -63,10 +70,13 @@ public class DoctorController {
                 em.getTransaction().rollback();
             }
             e.printStackTrace();
+        }finally {
+            em.close();
         }
     }
 
     public Doctor findDoctorByDocument(Long document) {
+        em = emf.createEntityManager();
         try {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<Doctor> cq = cb.createQuery(Doctor.class);
@@ -76,9 +86,8 @@ public class DoctorController {
             return em.createQuery(cq).getSingleResult();
         } catch (NoResultException e) {
             return null; // Si no se encuentra un doctor con el documento especificado
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        }finally {
+            em.close();
         }
     }
 
@@ -96,15 +105,6 @@ public class DoctorController {
             return q.getResultList();
         } finally {
             em.close();
-        }
-    }
-
-    public void close() {
-        if (em.isOpen()) {
-            em.close();
-        }
-        if (emf.isOpen()) {
-            emf.close();
         }
     }
 }
