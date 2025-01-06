@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class Doctor {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id_doc;
     private Long Document;
     private String name;
@@ -16,7 +16,7 @@ public class Doctor {
     private Long phone;
     private String address;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<User> users;
 
     public Doctor() {

@@ -8,7 +8,7 @@ import java.util.*;
 @Entity
 public class User {
 @Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+@GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id_user;
     private Long Document;
     private String name;
@@ -19,7 +19,7 @@ public class User {
 @Temporal(TemporalType.DATE)
     private Date brithdate;
 
-@ManyToMany(cascade = CascadeType.ALL)
+@ManyToMany
     private List<Doctor> doctors;
 
     public User() {
