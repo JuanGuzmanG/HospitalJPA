@@ -16,7 +16,7 @@ public class Doctor {
     private Long phone;
     private String address;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "doctors")
     private List<User> users;
 
     public Doctor() {

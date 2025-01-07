@@ -76,20 +76,11 @@ public class DoctorController {
     }
 
     public Doctor findDoctorByDocument(Long document) {
-        em = emf.createEntityManager();
-        try {
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<Doctor> cq = cb.createQuery(Doctor.class);
-            Root<Doctor> doctor = cq.from(Doctor.class);
-            cq.select(doctor).where(cb.equal(doctor.get("Document"), document));
-
-            return em.createQuery(cq).getSingleResult();
-        } catch (NoResultException e) {
-            return null; // Si no se encuentra un doctor con el documento especificado
-        }finally {
-            em.close();
-        }
+        return em.createQuery("SELECT d FROM Doctor d WHERE d.Document = :document", Doctor.class)
+                .setParameter("document", document)
+                .getSingleResult();
     }
+
 
     public List<Doctor> getAlldoctors(){return getAlldoctors(true,-1,-1);}
     public List<Doctor> getAlldoctors(boolean all,int first,int max){

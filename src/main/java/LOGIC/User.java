@@ -19,7 +19,12 @@ public class User {
 @Temporal(TemporalType.DATE)
     private Date brithdate;
 
-@ManyToMany
+    @ManyToMany
+    @JoinTable(
+            name = "user_doctor",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "doctor_id")
+    )
     private List<Doctor> doctors;
 
     public User() {

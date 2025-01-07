@@ -2,10 +2,8 @@ package GUI;
 
 import LOGIC.Controller;
 import LOGIC.Doctor;
-import LOGIC.User;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +24,7 @@ public class CreateUser extends JFrame {
     private JTextArea talastnameUser;
     private JTextArea taEmailUser;
     private JTextArea taphoneUser;
-    private JButton btnClearUser;
+    private JButton returnbtn;
     private JButton btncreateButton;
     private JPanel Date;
     private JSpinner YearSpinner;
@@ -38,6 +36,7 @@ public class CreateUser extends JFrame {
     private JLabel Documentlb;
     private JTextArea taDocument;
     private JList list1;
+    private JButton btnClear;
     private JTable table1;
 
     //----Controller
@@ -54,6 +53,7 @@ public class CreateUser extends JFrame {
 
         setContentPane(JframeCreatePanel);
 
+        //----tab funtion
         MainForm.setTabTraversal(taDocument);
         MainForm.setTabTraversal(taNameUser);
         MainForm.setTabTraversal(talastnameUser);
@@ -62,7 +62,7 @@ public class CreateUser extends JFrame {
         MainForm.setTabTraversal(taMHUser);
 
         //----clear button
-        btnClearUser.addActionListener(e -> {
+        btnClear.addActionListener(e -> {
             clear();
         });
 
@@ -91,9 +91,16 @@ public class CreateUser extends JFrame {
             setVisible(false);
         });
 
-
+        //----return btn
+        returnbtn.addActionListener(e -> {
+            MF.openCreateUser(CreateUser.this);
+            MF.setVisible(true);
+            setVisible(false);
+            MF.setLocationRelativeTo(this);
+        });
     }
 
+    //----upload data
     public void upload() {
         DefaultListModel<Doctor> doctormodel = new DefaultListModel<>();
         List<Doctor> doctors = controller.getdoctors();
@@ -105,7 +112,9 @@ public class CreateUser extends JFrame {
         }
     }
 
+    //----clear texts
     public void clear() {
+        taDocument.setText("");
         taNameUser.setText("");
         talastnameUser.setText("");
         taEmailUser.setText("");

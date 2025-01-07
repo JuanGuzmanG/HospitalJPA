@@ -24,6 +24,9 @@ public class MainForm extends  JFrame {
     public void openCreateUser(CreateUser cs){
         this.createUser = cs;
     }
+    private ViewUsers viewUsers = new ViewUsers();
+    public void openViewUsers(ViewUsers u){this.viewUsers = u;}
+
     private CreateDoctor createdoctor = new CreateDoctor();
     public void openCreateDoctor(CreateDoctor cd){
         this.createdoctor = cd;
@@ -32,10 +35,7 @@ public class MainForm extends  JFrame {
     public void openViewDoctors(ViewDoctors vd){
         this.viewDoctors = vd;
     }
-    private ViewUsers viewUsers = new ViewUsers();
-    public void openViewUsers(ViewUsers u){
-        this.viewUsers = u;
-    }
+
 
     public static String[] OptionsDoctor = {"-","Pediatrics", "General-Medicine", "Optometry", "Gastroenterology"};
     public static String[] Allergies = {"-","Peanut","Acetaminophen","Aspirin","Ibuprofen"};

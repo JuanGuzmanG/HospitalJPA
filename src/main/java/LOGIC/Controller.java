@@ -12,17 +12,26 @@ public class Controller {
 
     //=================USER==================================
 
-    public void saveUser(Long document, String name, String lastname, String email, Long phone, Date brithdate, String medicalHistory, List<Doctor> doctors){
-        User existingUser = pc.findUserByDocument(document); // Método para buscar si el usuario ya existe
+    public void saveUser(Long document, String name, String lastname, String email, Long phone, Date brithdate, String medicalHistory, List<Doctor> doctors) {
+        User existingUser = pc.findUserByDocument(document); // Verificar si el usuario ya existe
         if (existingUser == null) {
-            User user = new User(document, name, lastname, email, phone, brithdate, medicalHistory, doctors);
+            List<Doctor> managedDoctors = new ArrayList<>();
+            for (Doctor doctor : doctors) {
+                Doctor managedDoctor = pc.findDoctorByDocument(doctor.getDocument()); // Buscar al doctor en la BD
+                if (managedDoctor != null) {
+                    managedDoctors.add(managedDoctor); // Agregar al doctor gestionado
+                } else {
+                    System.out.println("Doctor con documento " + doctor.getDocument() + " no existe.");
+                }
+            }
+            // Crear el nuevo usuario con los doctores gestionados
+            User user = new User(document, name, lastname, email, phone, brithdate, medicalHistory, managedDoctors);
             pc.createUser(user);
         } else {
-            // Si el usuario ya existe, solo asignamos los doctores
-            existingUser.setDoctors(doctors);
-            pc.updateUser(existingUser);
+            System.out.println("El usuario ya existe.");
         }
     }
+
 
     public List<User> getusers(){
         return pc.getAllUsers();
@@ -41,8 +50,7 @@ public class Controller {
                 // Si el usuario existe, agregarlo al doctor
                 existingUsers.add(existingUser);
             } else {
-                // Si el usuario no existe, agregarlo como nuevo (aunque esto no es ideal)
-                existingUsers.add(user);
+                System.out.println("no hay usuario con ese documento");
             }
         }
 

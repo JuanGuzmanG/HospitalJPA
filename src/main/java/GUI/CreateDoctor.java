@@ -5,6 +5,8 @@ import LOGIC.User;
 
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,6 +28,8 @@ public class CreateDoctor extends JFrame {
     private JTextArea taphone;
     private JTextArea taDocument;
     private JLabel lbDocument;
+    private JButton retrunButton;
+    private JButton clearButton;
 
     Controller controller = new Controller();
     //MAIN WINDOW
@@ -37,6 +41,7 @@ public class CreateDoctor extends JFrame {
     public CreateDoctor() {
         setContentPane(JFrameCreateDoctor);
 
+        //---ENTER FUNCTION
         MainForm.setTabTraversal(taDocument);
         MainForm.setTabTraversal(taNameDoctor);
         MainForm.setTabTraversal(taLastname);
@@ -47,18 +52,8 @@ public class CreateDoctor extends JFrame {
             cbSpecialty.addItem(o);
         }
 
-        btn_ClearDoctor.addActionListener(e -> {
-                taNameDoctor.setText("");
-                taLastname.setText("");
-                taaddres.setText("");
-                cbSpecialty.setSelectedIndex(0);
-                list1.setSelectedIndex(0);
-        });
-
+        //----create btn
         btn_createButton.addActionListener(e -> {
-                mainForm.openCreateDoctor(CreateDoctor.this);
-                mainForm.setVisible(true);
-                setVisible(false);
 
                 Long document = Long.valueOf(taDocument.getText());
                 String name = taNameDoctor.getText();
@@ -71,6 +66,26 @@ public class CreateDoctor extends JFrame {
                 controller.saveDoctor(document,name,lastname,Specialty,phone,address,users);
 
                 JOptionPane.showMessageDialog(CreateDoctor.this, "Doctor created successfully");
+
+                mainForm.openCreateDoctor(CreateDoctor.this);
+                mainForm.setVisible(true);
+                setVisible(false);
+                mainForm.setLocationRelativeTo(this);
+        });
+
+        //----clear btn
+        clearButton.addActionListener(e -> {
+            taNameDoctor.setText("");
+            taLastname.setText("");
+            taaddres.setText("");
+            cbSpecialty.setSelectedIndex(0);
+            list1.setSelectedIndex(0);
+        });
+        retrunButton.addActionListener(e -> {
+            mainForm.openCreateDoctor(CreateDoctor.this);
+            mainForm.setVisible(true);
+            setVisible(false);
+            mainForm.setLocationRelativeTo(this);
         });
     }
 

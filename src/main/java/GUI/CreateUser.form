@@ -433,7 +433,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="a0154" class="javax.swing.JButton" binding="btnClearUser">
+                      <component id="a0154" class="javax.swing.JButton" binding="returnbtn">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -444,7 +444,7 @@
                           <text value="return"/>
                         </properties>
                       </component>
-                      <component id="76d5c" class="javax.swing.JButton">
+                      <component id="76d5c" class="javax.swing.JButton" binding="btnClear">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
