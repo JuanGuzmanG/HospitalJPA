@@ -32,11 +32,13 @@ public class Controller {
         }
     }
 
-
     public List<User> getusers(){
         return pc.getAllUsers();
     }
 
+    public User findUserByDocument(Long id){
+        return pc.findUserByDocument(id);
+    }
     //=================DOCTOR==================================
     public void saveDoctor(Long document, String name, String lastname, String specialty, Long phone, String address, List<User> users){
         List<User> existingUsers = new ArrayList<>();
@@ -58,13 +60,17 @@ public class Controller {
         Doctor doctor = new Doctor(document, name, lastname, specialty, phone, address, existingUsers);
         pc.createDoctor(doctor);
     }
+
     public List<Doctor> getdoctors(){
         return pc.getAllDoctors();
     }
+
     public void Deletedoctor(Long document){pc.deleteDoctor(document);}
+
     public Doctor findDoctorByDocument(Long document){
         return pc.findDoctorByDocument(document);
     };
+
     public void updateDoctor(Doctor doctor,Long document, String name,String lastname,String address,Long phone,String specialty ){
         doctor.setDocument(document);
         doctor.setName(name);

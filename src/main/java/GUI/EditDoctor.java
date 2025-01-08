@@ -103,7 +103,7 @@ public class EditDoctor extends javax.swing.JFrame {
             }
         }
 
-        List<User> Users = controller.getusers();
+        List<User> Users = doctor.getUsers();
 
         DefaultTableModel model = new DefaultTableModel(){
             //no sean editables

@@ -1,14 +1,96 @@
 package GUI;
 
-import javax.swing.*;
+import LOGIC.Controller;
+import LOGIC.Doctor;
+import LOGIC.User;
 
-public class EditUser {
-    private JPanel EditUser;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.List;
+
+public class EditUser extends JFrame {
+    private JPanel EditUserp;
     private JPanel EditUserPanel;
-    private JTextField textField1;
-    private JSpinner spinner1;
-    private JTextArea textArea1;
+    private JTextField documentlbl;
+    private JSpinner yearspinner;
+    private JTextArea mhtxa;
     private JButton RETURNButton;
     private JButton SAVEButton;
     private JButton CLEARButton;
+    private JTable tabledoctors;
+    private JTextField namelbl;
+    private JTextField lastnamelbl;
+    private JTextField emaillbl;
+    private JTextField phonelbl;
+    private JSpinner dayspinner;
+    private JSpinner monthspinner;
+
+    User user;
+    Controller controller = new Controller();
+
+    //----window
+    private ViewUsers view;
+    public void openViewUser(ViewUsers view,Long Document) {
+        this.view = view;
+        user = controller.findUserByDocument(Document);
+    }
+
+    public EditUser(){
+        setContentPane(EditUserp);
+
+
+        RETURNButton.addActionListener(e -> {
+            view.openEdituser(this);
+            view.setVisible(true);
+            view.setLocationRelativeTo(this);
+            setVisible(false);
+        });
+    }
+
+    private void upload(Long document){
+        User user = controller.findUserByDocument(document);
+
+        documentlbl.setText(document.toString());
+        namelbl.setText(user.getName());
+        lastnamelbl.setText(user.getLastname());
+        emaillbl.setText(user.getEmail());
+        phonelbl.setText(user.getPhone().toString());
+        mhtxa.setText(user.getMedicalHistory());
+
+        LocalDate localDate = user.getBrithdate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        dayspinner.setValue(localDate.getDayOfMonth());
+        monthspinner.setValue(localDate.getMonthValue());
+        yearspinner.setValue(localDate.getYear());
+
+        List<Doctor> doctors = controller.getdoctors();
+        DefaultTableModel model = new DefaultTableModel(){
+            //no sean editables
+            @Override
+            public boolean isCellEditable (int row, int column){
+                return false;
+            }
+        };
+        String[] titles ={"document","specialty","name", "last name"};
+        model.setColumnIdentifiers(titles);
+
+        if(doctors!=null){
+            for(Doctor doctor : doctors){
+                model.addRow(new Object[]{doctor.getDocument(),doctor.getSpecialty(),doctor.getName(),doctor.getLastname()});
+            }
+        }else {
+            System.out.println("no encontro nada");
+        }
+
+        tabledoctors.setModel(model);
+
+        for(int i=0;i<tabledoctors.getRowCount();i++){
+            for(Doctor doctor : doctors){
+                if(doctor.getDocument().equals(document)){
+                    tabledoctors.setRowSelectionInterval(i,i);
+                }
+            }
+        }
+    }
 }

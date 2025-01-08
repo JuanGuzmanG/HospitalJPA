@@ -308,7 +308,7 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <text value="Dia"/>
+                          <text value="day"/>
                         </properties>
                       </component>
                       <component id="5d73f" class="javax.swing.JLabel">
@@ -316,7 +316,7 @@
                           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <text value="Año"/>
+                          <text value="year"/>
                         </properties>
                       </component>
                       <component id="87677" class="javax.swing.JLabel">
@@ -324,7 +324,7 @@
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <text value="Mes"/>
+                          <text value="month"/>
                         </properties>
                       </component>
                     </children>

@@ -25,9 +25,13 @@ public class ViewUsers extends javax.swing.JFrame {
         this.mf = mf;
     }
 
+    private EditUser ed = new EditUser();
+    public void openEdituser(EditUser ed) {this.ed = ed;}
+
     public ViewUsers() {
         controller = new Controller();
         setContentPane(Mainpanel);
+
 
         RETURNButton.addActionListener(new ActionListener() {
             @Override
@@ -36,6 +40,14 @@ public class ViewUsers extends javax.swing.JFrame {
                 mf.setVisible(true);
                 setVisible(false);
             }
+        });
+
+        EditBtn.addActionListener(e -> {
+            User user = controller.findUserByDocument((long)table.getValueAt(table.getSelectedRow(),0));
+            ed.openViewUser(this,user.getDocument());
+            ed.setVisible(true);
+            ed.setLocationRelativeTo(this);
+            setVisible(false);
         });
     }
 
