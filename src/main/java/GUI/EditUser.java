@@ -34,6 +34,7 @@ public class EditUser extends JFrame {
     private ViewUsers view;
     public void openViewUser(ViewUsers view,Long Document) {
         this.view = view;
+        upload(Document);
         user = controller.findUserByDocument(Document);
     }
 
@@ -44,7 +45,7 @@ public class EditUser extends JFrame {
         RETURNButton.addActionListener(e -> {
             view.openEdituser(this);
             view.setVisible(true);
-            view.setLocationRelativeTo(this);
+            view.setLocationRelativeTo(null);
             setVisible(false);
         });
     }
@@ -65,7 +66,7 @@ public class EditUser extends JFrame {
         yearspinner.setValue(localDate.getYear());
 
         List<Doctor> doctors = controller.getdoctors();
-        DefaultTableModel model = new DefaultTableModel(){
+        DefaultTableModel modeluser = new DefaultTableModel(){
             //no sean editables
             @Override
             public boolean isCellEditable (int row, int column){
@@ -73,22 +74,25 @@ public class EditUser extends JFrame {
             }
         };
         String[] titles ={"document","specialty","name", "last name"};
-        model.setColumnIdentifiers(titles);
+        modeluser.setColumnIdentifiers(titles);
 
         if(doctors!=null){
             for(Doctor doctor : doctors){
-                model.addRow(new Object[]{doctor.getDocument(),doctor.getSpecialty(),doctor.getName(),doctor.getLastname()});
+                modeluser.addRow(new Object[]{doctor.getDocument(),doctor.getSpecialty(),doctor.getName(),doctor.getLastname()});
             }
         }else {
             System.out.println("no encontro nada");
         }
+        tabledoctors.setModel(modeluser);
 
-        tabledoctors.setModel(model);
-
-        for(int i=0;i<tabledoctors.getRowCount();i++){
-            for(Doctor doctor : doctors){
-                if(doctor.getDocument().equals(document)){
-                    tabledoctors.setRowSelectionInterval(i,i);
+        List<Doctor> userDoctors = user.getDoctors(); // Lista de doctores del usuario
+        if (userDoctors != null) {
+            for (int i = 0; i < tabledoctors.getRowCount(); i++) {
+                Long doctorDocument = (Long) tabledoctors.getValueAt(i, 0); // Documento de doctor en la tabla
+                for (Doctor userDoctor : userDoctors) {
+                    if (userDoctor.getDocument().equals(doctorDocument)) {
+                        tabledoctors.addRowSelectionInterval(i, i); // Seleccionar la fila
+                    }
                 }
             }
         }

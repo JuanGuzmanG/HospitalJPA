@@ -46,6 +46,7 @@ public class ViewUsers extends javax.swing.JFrame {
             User user = controller.findUserByDocument((long)table.getValueAt(table.getSelectedRow(),0));
             ed.openViewUser(this,user.getDocument());
             ed.setVisible(true);
+            ed.setSize(800,500);
             ed.setLocationRelativeTo(this);
             setVisible(false);
         });

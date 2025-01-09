@@ -103,7 +103,7 @@ public class EditDoctor extends javax.swing.JFrame {
             }
         }
 
-        List<User> Users = doctor.getUsers();
+        List<User> Users = controller.getusers();
 
         DefaultTableModel model = new DefaultTableModel(){
             //no sean editables
@@ -112,17 +112,29 @@ public class EditDoctor extends javax.swing.JFrame {
                 return false;
             }
         };
-        String[] titles ={"document","name", "last name", "email","phone","Medical History","birthday"};
+        String[] titles ={"document","name", "last name"};
         model.setColumnIdentifiers(titles);
 
         if(Users!=null){
             for(User u : Users){
-                model.addRow(new Object[]{u.getDocument(),u.getName(),u.getLastname(),u.getEmail(),u.getPhone(),u.getMedicalHistory(),u.getBrithdate()});
+                model.addRow(new Object[]{u.getDocument(),u.getName(),u.getLastname()});
             }
         }else {
             System.out.println("no encontro nada");
         }
 
         table.setModel(model);
+
+        List<User> users = doctor.getUsers();
+        if(users!=null){
+            for (int i = 0; i < table.getRowCount(); i++) {
+                Long userdocument = (Long) table.getValueAt(i, 0); // Documento de doctor en la tabla
+                for (User user : users) {
+                    if (user.getDocument().equals(userdocument)) {
+                        table.addRowSelectionInterval(i, i); // Seleccionar la fila
+                    }
+                }
+            }
+        }
     }
 }
