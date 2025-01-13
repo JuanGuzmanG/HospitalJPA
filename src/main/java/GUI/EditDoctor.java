@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EditDoctor extends javax.swing.JFrame {
@@ -67,9 +68,7 @@ public class EditDoctor extends javax.swing.JFrame {
         });
 
         //----save button
-        SAVEButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        SAVEButton.addActionListener(e ->{
                 Long Document = Long.parseLong(taDocument.getText());
                 String name = taName.getText();
                 String lastname = taLastname.getText();
@@ -77,13 +76,23 @@ public class EditDoctor extends javax.swing.JFrame {
                 Long phone = Long.parseLong(taPhone.getText());
                 String specialty = cbSpecialty.getSelectedItem().toString();
 
-                controller.updateDoctor(doctor,Document,name,lastname,address,phone,specialty);
+                int[] selectedRows = table.getSelectedRows();
+                List<User> selectedusers = new ArrayList<>();
+                for(int row : selectedRows) {
+                    Long userDocument = (long) table.getValueAt(row, 0);
+                    User user = controller.findUserByDocument(userDocument);
+                    if(user != null) {
+                        selectedusers.add(user);
+                    }
+                }
+
+
+                controller.updateDoctor(doctor,Document,name,lastname,address,phone,specialty,selectedusers);
 
                 vd.openEditdoctor(EditDoctor.this);
                 vd.setVisible(true);
                 vd.loadinfo();
                 setVisible(false);
-            }
         });
     }
 

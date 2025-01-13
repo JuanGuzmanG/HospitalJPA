@@ -43,12 +43,42 @@ public class ViewUsers extends javax.swing.JFrame {
         });
 
         EditBtn.addActionListener(e -> {
-            User user = controller.findUserByDocument((long)table.getValueAt(table.getSelectedRow(),0));
-            ed.openViewUser(this,user.getDocument());
-            ed.setVisible(true);
-            ed.setSize(800,500);
-            ed.setLocationRelativeTo(this);
-            setVisible(false);
+            if(table.getRowCount()>0){
+                if(table.getSelectedRow()!=-1){
+                    User user = controller.findUserByDocument((long)table.getValueAt(table.getSelectedRow(),0));
+                    ed.openViewUser(this,user.getDocument());
+                    ed.setVisible(true);
+                    ed.setSize(800,500);
+                    ed.setLocationRelativeTo(this);
+                    setVisible(false);
+                }else{
+                    mf.message("No user selected","error","error selected");
+                }
+            }else{
+                mf.message("table is empty","error","error empty table");
+            }
+        });
+
+
+        DELETEButton.addActionListener(e ->{
+            if(table.getRowCount()>0){
+                if(table.getSelectedRow()==-1){
+                    mf.message("No user selected","error","error selected");
+                }else if(table.getSelectedRow()!=-1){
+                    Long iduser = (Long)table.getValueAt(table.getSelectedRow(),0);
+                    if(iduser!=null){
+                        User user = controller.findUserByDocument(iduser);
+                        controller.DeleteUser(user.getDocument());
+                        mf.message("Deleted user","info","deleted");
+                        loadInfo();
+                    }else {
+                        mf.message("No user selected","error","error selected");
+                    }
+
+                }
+            }else if(table.getRowCount()==0){
+                mf.message("Table is empty","error","Error empty table");
+            }
         });
     }
 

@@ -93,4 +93,16 @@ public class MainForm extends  JFrame {
             }
         });
     }
+    //MESSAGE ACTIONS
+    public void message(String message, String type, String title){
+        JOptionPane optionPane = new JOptionPane(message);
+        if(type.equals("info")){
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        }else if(type.equals("error")){
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(title);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+    }
 }

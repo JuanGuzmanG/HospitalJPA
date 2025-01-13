@@ -64,9 +64,7 @@ public class ViewDoctors extends JFrame {
         });
 
         //DELETE BUTTON
-        DELETEButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        DELETEButton.addActionListener(e ->{
                 if(table.getRowCount() > 0) {
                     if(table.getSelectedRow()==-1) {
                         message("No doctor selected","error","Error Selected");
@@ -81,7 +79,6 @@ public class ViewDoctors extends JFrame {
                 } else if (table.getRowCount()==0) {
                     message("Table is Empty","error","Error empty");
                 }
-            }
         });
 
     }

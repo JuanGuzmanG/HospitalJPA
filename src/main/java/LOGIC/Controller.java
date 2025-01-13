@@ -32,6 +32,11 @@ public class Controller {
         }
     }
 
+    public void DeleteUser(Long document) {
+        User user = findUserByDocument(document);
+        pc.deleteUser(user.getId());
+    }
+
     public List<User> getusers(){
         return pc.getAllUsers();
     }
@@ -39,6 +44,11 @@ public class Controller {
     public User findUserByDocument(Long id){
         return pc.findUserByDocument(id);
     }
+
+    public void updateUser(Long id, User user) {
+
+    }
+
     //=================DOCTOR==================================
     public void saveDoctor(Long document, String name, String lastname, String specialty, Long phone, String address, List<User> users){
         List<User> existingUsers = new ArrayList<>();
@@ -71,13 +81,46 @@ public class Controller {
         return pc.findDoctorByDocument(document);
     };
 
-    public void updateDoctor(Doctor doctor,Long document, String name,String lastname,String address,Long phone,String specialty ){
+    public void updateDoctor(Doctor doctor,Long document, String name,String lastname,String address,Long phone,String specialty,List<User> users){
+
+        List<User> listaUsuarios = pc.getAllUsers();
+        List<User> usuariosdoctor = new ArrayList();
+        System.out.println("lista de usuarios traida "+listaUsuarios);
+
+        for(User user : listaUsuarios){
+            for(Doctor doc : user.getDoctors()){
+                if(doc.getDocument().equals(doctor.getDocument())){
+                    usuariosdoctor.add(user);
+                }
+            }
+        }
+        System.out.println("lista de usuarios con el doctor "+usuariosdoctor);
+
         doctor.setDocument(document);
         doctor.setName(name);
         doctor.setLastname(lastname);
         doctor.setAddress(address);
         doctor.setPhone(phone);
         doctor.setSpecialty(specialty);
+        doctor.setUsers(users);
+
+        for(User user : usuariosdoctor){
+            if(!doctor.getUsers().contains(user)){
+                System.out.println(user.getName());
+                List<Doctor> doctors = user.getDoctors();
+                Doctor doctorselected = new Doctor();
+                for(Doctor doc : doctors){
+                    if(doc.getDocument().equals(doctor.getDocument())){
+                        doctorselected = doc;
+                    }
+                }
+                doctors.remove(doctorselected);
+                user.setDoctors(doctors);
+                pc.updateUser(user);
+            }
+        }
+
         pc.updateDoctor(doctor);
     }
+
 }

@@ -20,7 +20,7 @@ public class DoctorController {
     }
 
     public void createDoctor(Doctor doctor) {
-        em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(doctor);
@@ -41,7 +41,7 @@ public class DoctorController {
 
 
     public void updateDoctor(Doctor doctor) {
-        em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.merge(doctor);
@@ -57,7 +57,7 @@ public class DoctorController {
     }
 
     public void deleteDoctor(Long id) {
-        em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             Doctor doctor = em.find(Doctor.class, id);
@@ -76,6 +76,7 @@ public class DoctorController {
     }
 
     public Doctor findDoctorByDocument(Long document) {
+        EntityManager em = emf.createEntityManager();
         return em.createQuery("SELECT d FROM Doctor d WHERE d.Document = :document", Doctor.class)
                 .setParameter("document", document)
                 .getSingleResult();

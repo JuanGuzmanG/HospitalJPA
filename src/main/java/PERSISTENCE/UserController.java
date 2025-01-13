@@ -39,7 +39,7 @@ public class UserController {
     }
 
     public void updateUser(User user) {
-        em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.merge(user);
@@ -55,10 +55,12 @@ public class UserController {
     }
 
     public void deleteUser(Long id) {
-        em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             User user = em.find(User.class, id);
+            System.out.println("id"+id);
+            System.out.println(user.getName());
             if (user != null) {
                 em.remove(user);
             }
@@ -74,7 +76,7 @@ public class UserController {
     }
 
     public User findUserByDocument(Long document) {
-        em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<User> cq = cb.createQuery(User.class);
