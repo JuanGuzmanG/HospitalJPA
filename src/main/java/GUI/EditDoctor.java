@@ -98,8 +98,7 @@ public class EditDoctor extends javax.swing.JFrame {
 
     //----upload changes
     private void upload(Long document){
-        Doctor doctor = new Doctor();
-        doctor = controller.findDoctorByDocument(document);
+        Doctor doctor = controller.findDoctorByDocument(document);
 
         taDocument.setText(document.toString());
         taName.setText(doctor.getName());

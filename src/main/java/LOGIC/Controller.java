@@ -45,8 +45,34 @@ public class Controller {
         return pc.findUserByDocument(id);
     }
 
-    public void updateUser(Long id, User user) {
+    public void updateUser(User user,Long document,String name,String lastname,String email,
+                           Long phone,String medicalHistory,Date brithdate,List<Doctor> doctors) {
+        user.setDocument(document);
+        user.setName(name);
+        user.setLastname(lastname);
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setMedicalHistory(medicalHistory);
+        user.setBrithdate(brithdate);
 
+        List<Doctor> currentDoctors = user.getDoctors();
+
+        List<Doctor> doctorsRemoved = currentDoctors;
+        doctorsRemoved.removeAll(doctors);
+        for(Doctor doctor : doctorsRemoved) {
+            doctor.getUsers().remove(user);
+            pc.updateDoctor(doctor);
+        }
+
+        List<Doctor> doctorToAdd = doctors;
+        doctorToAdd.removeAll(currentDoctors);
+        for(Doctor doctor : doctorToAdd) {
+            doctor.getUsers().add(user);
+            pc.updateDoctor(doctor);
+        }
+
+        user.getDoctors().clear();
+        user.setDoctors(doctors);
     }
 
     //=================DOCTOR==================================
@@ -81,20 +107,8 @@ public class Controller {
         return pc.findDoctorByDocument(document);
     };
 
-    public void updateDoctor(Doctor doctor,Long document, String name,String lastname,String address,Long phone,String specialty,List<User> users){
-
-        List<User> listaUsuarios = pc.getAllUsers();
-        List<User> usuariosdoctor = new ArrayList();
-        System.out.println("lista de usuarios traida "+listaUsuarios);
-
-        for(User user : listaUsuarios){
-            for(Doctor doc : user.getDoctors()){
-                if(doc.getDocument().equals(doctor.getDocument())){
-                    usuariosdoctor.add(user);
-                }
-            }
-        }
-        System.out.println("lista de usuarios con el doctor "+usuariosdoctor);
+    public void updateDoctor(Doctor doctor,Long document, String name,String lastname,
+                             String address,Long phone,String specialty,List<User> users) {
 
         doctor.setDocument(document);
         doctor.setName(name);
@@ -102,25 +116,30 @@ public class Controller {
         doctor.setAddress(address);
         doctor.setPhone(phone);
         doctor.setSpecialty(specialty);
-        doctor.setUsers(users);
 
-        for(User user : usuariosdoctor){
-            if(!doctor.getUsers().contains(user)){
-                System.out.println(user.getName());
-                List<Doctor> doctors = user.getDoctors();
-                Doctor doctorselected = new Doctor();
-                for(Doctor doc : doctors){
-                    if(doc.getDocument().equals(doctor.getDocument())){
-                        doctorselected = doc;
-                    }
-                }
-                doctors.remove(doctorselected);
-                user.setDoctors(doctors);
-                pc.updateUser(user);
-            }
+        // Obtener los usuarios actuales asociados al doctor desde la base de datos
+        List<User> currentUsers = new ArrayList<>(doctor.getUsers());
+
+        // Identificar los usuarios a eliminar
+        List<User> usersToRemove = new ArrayList<>(currentUsers);
+        usersToRemove.removeAll(users);
+        for (User user : usersToRemove) {
+            user.getDoctors().remove(doctor);
+            pc.updateUser(user);
         }
 
+        List<User> usersToadd = new ArrayList<>(users);
+        usersToadd.removeAll(currentUsers);
+        for (User user : usersToadd) {
+            user.getDoctors().add(doctor);
+            pc.updateUser(user);
+        }
+
+        doctor.getUsers().clear();
+        doctor.setUsers(users);
+        // Persistir el doctor con las relaciones actualizadas
         pc.updateDoctor(doctor);
+
     }
 
 }

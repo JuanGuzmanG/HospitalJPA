@@ -6,8 +6,12 @@ import LOGIC.User;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EditUser extends JFrame {
@@ -46,6 +50,45 @@ public class EditUser extends JFrame {
             view.openEdituser(this);
             view.setVisible(true);
             view.setLocationRelativeTo(null);
+            setVisible(false);
+        });
+
+
+        CLEARButton.addActionListener(e -> {
+            documentlbl.setText("");
+            namelbl.setText("");
+            lastnamelbl.setText("");
+            emaillbl.setText("");
+            phonelbl.setText("");
+            dayspinner.setValue(0);
+            monthspinner.setValue(0);
+            yearspinner.setValue(0);
+            mhtxa.setText("");
+        });
+        SAVEButton.addActionListener(e -> {
+            Long document = Long.parseLong(documentlbl.getText());
+            String name = namelbl.getText();
+            String lastname = lastnamelbl.getText();
+            String email = emaillbl.getText();
+            Long phone = Long.parseLong(phonelbl.getText());
+            Date date = new Date((int)monthspinner.getValue(),(int)dayspinner.getValue(),(int)yearspinner.getValue());
+            String history = mhtxa.getText();
+
+            int[] selectedRows = tabledoctors.getSelectedRows();
+            List<Doctor> doctors = new ArrayList<>();
+            for (int row : selectedRows){
+                Long DocumentDoctor = (long) tabledoctors.getValueAt(row,0);
+                Doctor doctor = controller.findDoctorByDocument(DocumentDoctor);
+                if (doctor != null){
+                    doctors.add(doctor);
+                }
+            }
+
+            controller.updateUser(user, document, name, lastname, email, phone, history,date,doctors);
+
+            view.setVisible(true);
+            view.openEdituser(this);
+            view.setLocationRelativeTo(this);
             setVisible(false);
         });
     }
